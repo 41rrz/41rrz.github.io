@@ -13,19 +13,6 @@ const PROJECTS = [
     video: ""
   },
   {
-    id: "bird-ambient-flight-system",
-    title: "Bird Ambient Flight System",
-    category: "Roblox",
-    type: "Roblox Animation",
-    description: "A smooth follow-and-face bird system with ambient movement and customizable offsets.",
-    fullDescription: "A bird movement and animation setup made for ambient motion. It is designed around smooth movement, configurable offsets, and a more natural follow system that can be adapted for creatures or flying props.",
-    tags: ["Animation", "Ambient", "Config"],
-    image: "images/bird.png",
-    source: "#",
-    download: "#",
-    video: ""
-  },
-  {
     id: "vr-avatar-clone-controller",
     title: "VR Avatar Clone Controller",
     category: "VRChat",
