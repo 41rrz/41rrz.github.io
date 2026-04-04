@@ -427,10 +427,14 @@ h1 {
   text-decoration: none;
   color: inherit;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card-link:hover {
   text-decoration: none;
+  transform: translateY(-6px);
+  border-color: var(--accent-border);
+  box-shadow: 0 0 40px rgba(0,140,255,0.25);
 }
 
 .card-link .project-content {
@@ -455,6 +459,10 @@ h1 {
 
 .project-thumb {
   transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-thumb {
+  transform: scale(1.05);
 }
 
 .project-topline {
