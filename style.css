@@ -709,13 +709,21 @@ body.glow-high {
 }
 
 body.density-compact .project-content,
-body.density-compact .detail-panel,
 body.density-compact .hero {
   padding: 14px;
 }
 
 body.density-compact .project-desc {
   min-height: auto;
+}
+
+body.density-compact .project-showcase .detail-panel {
+  padding: 24px;
+}
+
+.project-side-column .detail-panel {
+  overflow: visible;
+  min-height: 0;
 }
 
 body.image-contain .project-thumb,
