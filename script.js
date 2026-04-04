@@ -1,21 +1,145 @@
-function applySavedTheme() {
-  const savedTheme = localStorage.getItem("airz-theme");
-  if (savedTheme === "light") {
-    document.body.classList.add("light-theme");
+const DEFAULT_SETTINGS = {
+  themePreset: "deep-blue",
+  glowStrength: "medium",
+  cardDensity: "comfy",
+  imageFit: "cover",
+  reducedMotion: false
+};
+
+function getSavedSettings() {
+  const raw = localStorage.getItem("airz-site-settings");
+  if (!raw) return { ...DEFAULT_SETTINGS };
+
+  try {
+    return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
+  } catch {
+    return { ...DEFAULT_SETTINGS };
   }
 }
 
-function setupThemeToggle() {
-  const toggle = document.getElementById("themeToggle");
-  if (!toggle) return;
+function saveSettings(settings) {
+  localStorage.setItem("airz-site-settings", JSON.stringify(settings));
+}
 
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-theme");
-    localStorage.setItem(
-      "airz-theme",
-      document.body.classList.contains("light-theme") ? "light" : "dark"
-    );
-  });
+function clearSettingsClasses() {
+  document.body.classList.remove(
+    "theme-deep-blue",
+    "theme-midnight-cyan",
+    "theme-terminal-dark",
+    "theme-light-frost",
+    "glow-low",
+    "glow-medium",
+    "glow-high",
+    "density-comfy",
+    "density-compact",
+    "image-cover",
+    "image-contain",
+    "reduced-motion"
+  );
+}
+
+function applySettings(settings) {
+  clearSettingsClasses();
+
+  document.body.classList.add(`theme-${settings.themePreset}`);
+  document.body.classList.add(`glow-${settings.glowStrength}`);
+  document.body.classList.add(`density-${settings.cardDensity}`);
+  document.body.classList.add(`image-${settings.imageFit}`);
+
+  if (settings.reducedMotion) {
+    document.body.classList.add("reduced-motion");
+  }
+}
+
+function syncSettingsUI(settings) {
+  const themePreset = document.getElementById("themePreset");
+  const glowStrength = document.getElementById("glowStrength");
+  const cardDensity = document.getElementById("cardDensity");
+  const imageFit = document.getElementById("imageFit");
+  const reducedMotion = document.getElementById("reducedMotion");
+
+  if (themePreset) themePreset.value = settings.themePreset;
+  if (glowStrength) glowStrength.value = settings.glowStrength;
+  if (cardDensity) cardDensity.value = settings.cardDensity;
+  if (imageFit) imageFit.value = settings.imageFit;
+  if (reducedMotion) reducedMotion.checked = settings.reducedMotion;
+}
+
+function setupSettingsPanel() {
+  const openBtn = document.getElementById("openSettings");
+  const closeBtn = document.getElementById("closeSettings");
+  const overlay = document.getElementById("settingsOverlay");
+
+  if (openBtn) {
+    openBtn.addEventListener("click", () => {
+      document.body.classList.add("settings-open");
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      document.body.classList.remove("settings-open");
+    });
+  }
+
+  if (overlay) {
+    overlay.addEventListener("click", () => {
+      document.body.classList.remove("settings-open");
+    });
+  }
+}
+
+function setupSettingsControls() {
+  const settings = getSavedSettings();
+
+  const themePreset = document.getElementById("themePreset");
+  const glowStrength = document.getElementById("glowStrength");
+  const cardDensity = document.getElementById("cardDensity");
+  const imageFit = document.getElementById("imageFit");
+  const reducedMotion = document.getElementById("reducedMotion");
+
+  syncSettingsUI(settings);
+  applySettings(settings);
+
+  if (themePreset) {
+    themePreset.addEventListener("change", () => {
+      settings.themePreset = themePreset.value;
+      saveSettings(settings);
+      applySettings(settings);
+    });
+  }
+
+  if (glowStrength) {
+    glowStrength.addEventListener("change", () => {
+      settings.glowStrength = glowStrength.value;
+      saveSettings(settings);
+      applySettings(settings);
+    });
+  }
+
+  if (cardDensity) {
+    cardDensity.addEventListener("change", () => {
+      settings.cardDensity = cardDensity.value;
+      saveSettings(settings);
+      applySettings(settings);
+    });
+  }
+
+  if (imageFit) {
+    imageFit.addEventListener("change", () => {
+      settings.imageFit = imageFit.value;
+      saveSettings(settings);
+      applySettings(settings);
+    });
+  }
+
+  if (reducedMotion) {
+    reducedMotion.addEventListener("change", () => {
+      settings.reducedMotion = reducedMotion.checked;
+      saveSettings(settings);
+      applySettings(settings);
+    });
+  }
 }
 
 function getCategoryCount(category) {
@@ -39,7 +163,6 @@ function createCard(project) {
 
   return `
     <a class="project-card product-card card-link" href="project.html?id=${project.id}">
-      
       <div class="project-thumb-wrap">
         <img class="project-thumb" src="${project.image}" alt="${project.title}">
         <div class="project-thumb-overlay"></div>
@@ -53,10 +176,8 @@ function createCard(project) {
 
         <h3 class="project-title">${project.title}</h3>
         <p class="project-desc">${project.description}</p>
-
         <div class="tags">${tagsHtml}</div>
       </div>
-
     </a>
   `;
 }
@@ -161,14 +282,11 @@ function renderProjectPage() {
           <div class="project-type">${project.type}</div>
           <h1 class="detail-title">${project.title}</h1>
           <p class="detail-meta">${project.description}</p>
-
           <div class="project-side-price">${project.price || "Free"}</div>
-
           <div class="detail-actions stacked-actions">
             ${downloads}
             <a class="btn secondary full-btn" href="${project.source}" target="_blank">View Source</a>
           </div>
-
           <a class="back-link" href="index.html">← Back to archive</a>
         </div>
       </aside>
@@ -188,8 +306,8 @@ function renderProjectPage() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  applySavedTheme();
-  setupThemeToggle();
+  setupSettingsPanel();
+  setupSettingsControls();
   updateStats();
   setupFilters();
   renderProjects();
