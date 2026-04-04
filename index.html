@@ -6,7 +6,7 @@
   <title>Airz Archive</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body data-page="home">
+<body>
   <div class="bg-orb orb-1"></div>
   <div class="bg-orb orb-2"></div>
   <div class="bg-orb orb-3"></div>
@@ -23,14 +23,15 @@
           </p>
         </div>
 
-        <button id="themeToggle" class="btn secondary" type="button">
-          Toggle Theme
-        </button>
+        <div class="header-controls">
+          <button id="openSettings" class="btn secondary" type="button">
+            Settings
+          </button>
+        </div>
       </div>
 
       <div class="hero-actions">
         <a class="btn primary" href="#projects">Browse Projects</a>
-        <a class="btn secondary" href="project.html?id=terminal-shell-ui">Open Featured</a>
       </div>
 
       <div class="stats-grid">
@@ -81,6 +82,58 @@
       Built by Airz / 41rrz • Hosted with GitHub Pages
     </footer>
   </div>
+
+  <div id="settingsOverlay" class="settings-overlay"></div>
+
+  <aside id="settingsPanel" class="settings-panel glass">
+    <div class="settings-head">
+      <h2>Site Settings</h2>
+      <button id="closeSettings" class="btn secondary" type="button">Close</button>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label" for="themePreset">Theme Preset</label>
+      <select id="themePreset" class="settings-input">
+        <option value="deep-blue">Deep Blue</option>
+        <option value="midnight-cyan">Midnight Cyan</option>
+        <option value="terminal-dark">Terminal Dark</option>
+        <option value="light-frost">Light Frost</option>
+      </select>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label" for="glowStrength">Glow Strength</label>
+      <select id="glowStrength" class="settings-input">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label" for="cardDensity">Card Density</label>
+      <select id="cardDensity" class="settings-input">
+        <option value="comfy">Comfy</option>
+        <option value="compact">Compact</option>
+      </select>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label" for="imageFit">Image Fit</label>
+      <select id="imageFit" class="settings-input">
+        <option value="cover">Cover</option>
+        <option value="contain">Contain</option>
+      </select>
+    </div>
+
+    <div class="settings-group settings-toggle-row">
+      <span class="settings-label">Reduced Motion</span>
+      <label class="switch">
+        <input id="reducedMotion" type="checkbox">
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+  </aside>
 
   <script src="projects.js"></script>
   <script src="script.js"></script>
