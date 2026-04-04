@@ -399,21 +399,26 @@
       document.getElementById("stat-unity").textContent = projects.filter(p => p.category === "Unity").length;
     }
 
-    function createCard(project) {
-      const tagsHtml = project.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
-      return `
-        <article class="project-card">
-          <div class="project-type">${project.type}</div>
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-desc">${project.description}</p>
-          <div class="tags">${tagsHtml}</div>
-          <div class="project-actions">
-            <a class="small-btn" href="${project.source}" target="_blank">Source</a>
-            <a class="small-btn" href="${project.download}" target="_blank">Download</a>
-          </div>
-        </article>
-      `;
-    }
+function createCard(project) {
+  const tagsHtml = project.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+
+  return `
+    <article class="project-card">
+      ${project.image ? `<img src="${project.image}" style="width:100%; border-radius:14px; margin-bottom:12px;">` : ""}
+
+      <div class="project-type">${project.type}</div>
+      <h3 class="project-title">${project.title}</h3>
+      <p class="project-desc">${project.description}</p>
+
+      <div class="tags">${tagsHtml}</div>
+
+      <div class="project-actions">
+        <a class="small-btn" href="${project.source}" target="_blank">Source</a>
+        <a class="small-btn" href="${project.download}" target="_blank">Download</a>
+      </div>
+    </article>
+  `;
+}
 
     function renderProjects(filter = "All") {
       const filtered = filter === "All"
