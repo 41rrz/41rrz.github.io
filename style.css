@@ -422,10 +422,19 @@ h1 {
   padding-bottom: 18px;
 }
 
-.card-click {
+.card-link {
+  display: block;
   text-decoration: none;
   color: inherit;
-  display: block;
+  overflow: hidden;
+}
+
+.card-link:hover {
+  text-decoration: none;
+}
+
+.card-link .project-content {
+  padding: 18px;
 }
 
 .project-thumb-wrap {
