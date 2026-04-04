@@ -38,31 +38,23 @@ function createCard(project) {
   const tagsHtml = project.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
 
   return `
-    <article class="project-card product-card">
-      <a class="card-click" href="project.html?id=${project.id}">
-        <div class="project-thumb-wrap">
-          <img class="project-thumb" src="${project.image}" alt="${project.title}">
-          <div class="project-thumb-overlay"></div>
-        </div>
-
-        <div class="project-content">
-          <div class="project-topline">
-            <div class="project-type">${project.type}</div>
-            <div class="project-price">${project.price || "Free"}</div>
-          </div>
-
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-desc">${project.description}</p>
-          <div class="tags">${tagsHtml}</div>
-        </div>
-      </a>
-
-      <div class="project-actions">
-        <a class="small-btn" href="project.html?id=${project.id}">Open Project</a>
-        <a class="small-btn" href="${project.source}" target="_blank">Source</a>
-        <a class="small-btn" href="${project.download}" target="_blank">Download</a>
+    <a class="project-card product-card card-link" href="project.html?id=${project.id}">
+      <div class="project-thumb-wrap">
+        <img class="project-thumb" src="${project.image}" alt="${project.title}">
+        <div class="project-thumb-overlay"></div>
       </div>
-    </article>
+
+      <div class="project-content">
+        <div class="project-topline">
+          <div class="project-type">${project.type}</div>
+          <div class="project-price">${project.price || "Free"}</div>
+        </div>
+
+        <h3 class="project-title">${project.title}</h3>
+        <p class="project-desc">${project.description}</p>
+        <div class="tags">${tagsHtml}</div>
+      </div>
+    </a>
   `;
 }
 
