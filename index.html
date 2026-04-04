@@ -1,117 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Airz Archive</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Airz Archive</title>
+  <style>
+    * { box-sizing: border-box; }
 
-<style>
-* { box-sizing: border-box; }
+    :root{
+      --bg1:#020617;
+      --bg2:#061327;
+      --bg3:#071a33;
+      --panel:rgba(255,255,255,0.05);
+      --panel-2:rgba(255,255,255,0.07);
+      --border:rgba(255,255,255,0.10);
+      --text:rgba(255,255,255,0.95);
+      --muted:rgba(255,255,255,0.68);
+      --accent:rgba(34,211,238,0.18);
+      --accent-border:rgba(34,211,238,0.30);
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  background:
-    radial-gradient(circle at top left, rgba(59,130,246,.25), transparent 25%),
-    radial-gradient(circle at top right, rgba(14,165,233,.18), transparent 25%),
-    linear-gradient(180deg, #020617 0%, #061327 45%, #071a33 100%);
-}
+    html { scroll-behavior: smooth; }
 
-.wrap {
-  max-width: 1200px;
-  margin: auto;
-  padding: 40px;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,.25), transparent 25%),
+        radial-gradient(circle at top right, rgba(14,165,233,.18), transparent 25%),
+        radial-gradient(circle at bottom center, rgba(37,99,235,.20), transparent 35%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+      min-height: 100vh;
+    }
 
-.hero {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  padding: 40px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 40px rgba(37,99,235,.2);
-}
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 36px 22px 60px;
+    }
 
-h1 {
-  font-size: 50px;
-  margin: 0 0 10px;
-}
+    .hero, .panel, .project-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
 
-p {
-  color: rgba(255,255,255,.7);
-}
+    .hero {
+      padding: 34px;
+      box-shadow: 0 0 50px rgba(37,99,235,.15);
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(186,230,253,.9);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(34,211,238,.10);
+      border: 1px solid rgba(34,211,238,.18);
+    }
 
-.card {
-  background: rgba(255,255,255,0.05);
-  border-radius: 20px;
-  padding: 20px;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: 0.2s;
-}
+    h1 {
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.02;
+      margin: 16px 0 12px;
+    }
 
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(34,211,238,.3);
-}
+    .sub {
+      max-width: 850px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin: 0;
+    }
 
-.tag {
-  display: inline-block;
-  padding: 5px 10px;
-  margin-top: 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  background: rgba(34,211,238,.1);
-  border: 1px solid rgba(34,211,238,.2);
-}
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
 
-</style>
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: 0.2s ease;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: rgba(34,211,238,.12);
+      border-color: rgba(34,211,238,.28);
+      color: #d9fbff;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin: 0 0 14px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      margin: 0 0 18px;
+      line-height: 1.7;
+    }
+
+    .filters.panel {
+      padding: 18px;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent-border);
+      color: #d9fbff;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .project-card {
+      padding: 20px;
+      transition: 0.22s ease;
+      box-shadow: 0 0 30px rgba(59,130,246,0.06);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      background: var(--panel-2);
+      border-color: rgba(34,211,238,.22);
+    }
+
+    .project-type {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(186,230,253,.82);
+      margin-bottom: 10px;
+    }
+
+    .project-title {
+      font-size: 22px;
+      margin: 0 0 8px;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      min-height: 72px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 16px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(34,211,238,.10);
+      border: 1px solid rgba(34,211,238,.20);
+      color: #d8fbff;
+      font-size: 12px;
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .small-btn {
+      text-decoration: none;
+      color: white;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .small-btn:hover {
+      background: rgba(255,255,255,0.10);
+    }
+
+    .empty {
+      padding: 22px;
+      color: var(--muted);
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      margin-top: 18px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
 </head>
-
 <body>
-<div class="wrap">
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Airz Archive</span>
+      <h1>My scripts, systems, models, and assets.</h1>
+      <p class="sub">
+        A personal archive for everything I’ve made across Roblox, VRChat, Unity, and more.
+        This site will grow over time as I add projects, tools, downloadable files, previews, and source links.
+      </p>
 
-<div class="hero">
-  <h1>Airz Archive</h1>
-  <p>My collection of scripts, systems, models, and projects across Roblox, VRChat, Unity, and more.</p>
-</div>
+      <div class="top-actions">
+        <a class="btn primary" href="#projects">Browse Projects</a>
+        <a class="btn" href="#about">About This Archive</a>
+      </div>
 
-<div class="grid">
+      <div class="stats">
+        <div class="stat">
+          <strong id="stat-total">0</strong>
+          <span>Total Entries</span>
+        </div>
+        <div class="stat">
+          <strong id="stat-roblox">0</strong>
+          <span>Roblox</span>
+        </div>
+        <div class="stat">
+          <strong id="stat-vrchat">0</strong>
+          <span>VRChat</span>
+        </div>
+        <div class="stat">
+          <strong id="stat-unity">0</strong>
+          <span>Unity</span>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-  <h2>Roblox</h2>
-  <p>UI systems, scripts, game prototypes.</p>
-  <div class="tag">Lua</div>
-  <div class="tag">UI</div>
-</div>
+    <section class="section" id="projects">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-text">
+        Use the category buttons below to filter what shows up.
+      </p>
 
-<div class="card">
-  <h2>VRChat</h2>
-  <p>Avatars, clone systems, world tools.</p>
-  <div class="tag">VR</div>
-</div>
+      <div class="filters panel">
+        <div class="filter-row">
+          <button class="filter-btn active" data-filter="All">All</button>
+          <button class="filter-btn" data-filter="Roblox">Roblox</button>
+          <button class="filter-btn" data-filter="VRChat">VRChat</button>
+          <button class="filter-btn" data-filter="Unity">Unity</button>
+          <button class="filter-btn" data-filter="Assets">Assets</button>
+        </div>
+      </div>
 
-<div class="card">
-  <h2>Unity</h2>
-  <p>Game systems, tools, experiments.</p>
-  <div class="tag">C#</div>
-</div>
+      <div id="projectsGrid" class="projects-grid"></div>
+      <div id="emptyState" class="empty" style="display:none;">No projects match this category yet.</div>
+    </section>
 
-<div class="card">
-  <h2>Assets</h2>
-  <p>Models, textures, sounds.</p>
-  <div class="tag">Resources</div>
-</div>
+    <section class="section panel" id="about" style="padding:24px;">
+      <h2 class="section-title">About This Archive</h2>
+      <p class="section-text">
+        This is where I’m collecting older and newer work in one place instead of having everything scattered around.
+        Over time I’ll be adding more entries, screenshots, download links, GitHub repos, and polished pages for bigger projects.
+      </p>
+    </section>
 
-</div>
+    <div class="footer">
+      Built by Airz / 41rrz • Hosted with GitHub Pages
+    </div>
+  </div>
 
-</div>
+  <script>
+    const projects = [
+      {
+        title: "Terminal Shell UI",
+        category: "Roblox",
+        type: "Roblox UI System",
+        description: "A modular terminal-style UI setup designed for themes, expansion, and interactive systems.",
+        tags: ["Lua", "UI", "Themeable"],
+        source: "#",
+        download: "#"
+      },
+      {
+        title: "Bird Ambient Flight System",
+        category: "Roblox",
+        type: "Roblox Animation",
+        description: "A smooth follow-and-face bird system with ambient movement and customizable offsets.",
+        tags: ["Animation", "Ambient", "Config"],
+        source: "#",
+        download: "#"
+      },
+      {
+        title: "VR Avatar Clone Controller",
+        category: "VRChat",
+        type: "VRChat Utility",
+        description: "A clone setup with offset controls, freeze position support, and room for more customization tools.",
+        tags: ["VR", "Clone", "Tooling"],
+        source: "#",
+        download: "#"
+      },
+      {
+        title: "Unity Scene Tools",
+        category: "Unity",
+        type: "Unity Tool",
+        description: "Early archive slot for Unity tools, systems, experimental scenes, and reusable helpers.",
+        tags: ["C#", "Tool", "Prototype"],
+        source: "#",
+        download: "#"
+      },
+      {
+        title: "Model / Texture Pack",
+        category: "Assets",
+        type: "Asset Collection",
+        description: "A placeholder entry for model packs, textures, icons, sounds, and reusable project assets.",
+        tags: ["Models", "Textures", "Audio"],
+        source: "#",
+        download: "#"
+      }
+    ];
+
+    const grid = document.getElementById("projectsGrid");
+    const emptyState = document.getElementById("emptyState");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+
+    function updateStats() {
+      document.getElementById("stat-total").textContent = projects.length;
+      document.getElementById("stat-roblox").textContent = projects.filter(p => p.category === "Roblox").length;
+      document.getElementById("stat-vrchat").textContent = projects.filter(p => p.category === "VRChat").length;
+      document.getElementById("stat-unity").textContent = projects.filter(p => p.category === "Unity").length;
+    }
+
+    function createCard(project) {
+      const tagsHtml = project.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+      return `
+        <article class="project-card">
+          <div class="project-type">${project.type}</div>
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-desc">${project.description}</p>
+          <div class="tags">${tagsHtml}</div>
+          <div class="project-actions">
+            <a class="small-btn" href="${project.source}" target="_blank">Source</a>
+            <a class="small-btn" href="${project.download}" target="_blank">Download</a>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderProjects(filter = "All") {
+      const filtered = filter === "All"
+        ? projects
+        : projects.filter(project => project.category === filter);
+
+      grid.innerHTML = filtered.map(createCard).join("");
+      emptyState.style.display = filtered.length ? "none" : "block";
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        renderProjects(button.dataset.filter);
+      });
+    });
+
+    updateStats();
+    renderProjects();
+  </script>
 </body>
 </html>
