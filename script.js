@@ -39,6 +39,7 @@ function createCard(project) {
 
   return `
     <a class="project-card product-card card-link" href="project.html?id=${project.id}">
+      
       <div class="project-thumb-wrap">
         <img class="project-thumb" src="${project.image}" alt="${project.title}">
         <div class="project-thumb-overlay"></div>
@@ -52,8 +53,10 @@ function createCard(project) {
 
         <h3 class="project-title">${project.title}</h3>
         <p class="project-desc">${project.description}</p>
+
         <div class="tags">${tagsHtml}</div>
       </div>
+
     </a>
   `;
 }
