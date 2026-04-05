@@ -1,7 +1,6 @@
 const DEFAULT_SETTINGS = {
   themePreset: "deep-blue",
   glowStrength: "medium",
-  cardDensity: "comfy",
   imageFit: "cover",
   reducedMotion: false
 };
@@ -30,8 +29,6 @@ function clearSettingsClasses() {
     "glow-low",
     "glow-medium",
     "glow-high",
-    "density-comfy",
-    "density-compact",
     "image-cover",
     "image-contain",
     "reduced-motion"
@@ -43,7 +40,6 @@ function applySettings(settings) {
 
   document.body.classList.add(`theme-${settings.themePreset}`);
   document.body.classList.add(`glow-${settings.glowStrength}`);
-  document.body.classList.add(`density-${settings.cardDensity}`);
   document.body.classList.add(`image-${settings.imageFit}`);
 
   if (settings.reducedMotion) {
@@ -54,13 +50,11 @@ function applySettings(settings) {
 function syncSettingsUI(settings) {
   const themePreset = document.getElementById("themePreset");
   const glowStrength = document.getElementById("glowStrength");
-  const cardDensity = document.getElementById("cardDensity");
   const imageFit = document.getElementById("imageFit");
   const reducedMotion = document.getElementById("reducedMotion");
 
   if (themePreset) themePreset.value = settings.themePreset;
   if (glowStrength) glowStrength.value = settings.glowStrength;
-  if (cardDensity) cardDensity.value = settings.cardDensity;
   if (imageFit) imageFit.value = settings.imageFit;
   if (reducedMotion) reducedMotion.checked = settings.reducedMotion;
 }
@@ -94,7 +88,6 @@ function setupSettingsControls() {
 
   const themePreset = document.getElementById("themePreset");
   const glowStrength = document.getElementById("glowStrength");
-  const cardDensity = document.getElementById("cardDensity");
   const imageFit = document.getElementById("imageFit");
   const reducedMotion = document.getElementById("reducedMotion");
 
@@ -112,14 +105,6 @@ function setupSettingsControls() {
   if (glowStrength) {
     glowStrength.addEventListener("change", () => {
       settings.glowStrength = glowStrength.value;
-      saveSettings(settings);
-      applySettings(settings);
-    });
-  }
-
-  if (cardDensity) {
-    cardDensity.addEventListener("change", () => {
-      settings.cardDensity = cardDensity.value;
       saveSettings(settings);
       applySettings(settings);
     });
