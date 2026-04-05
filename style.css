@@ -286,7 +286,7 @@ h1 {
 }
 
 .project-content {
-  padding: 18px;
+  padding: 22px;
 }
 
 .project-type {
@@ -401,6 +401,20 @@ h1 {
   min-width: 0;
 }
 
+.project-detail-card,
+.detail-panel,
+.media-card {
+  min-width: 0;
+}
+
+.project-side-price,
+.subsection-title,
+.btn,
+.small-btn {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .media-card {
   overflow: hidden;
   padding: 0;
@@ -452,27 +466,31 @@ h1 {
 }
 
 .project-side-column .detail-panel {
-  overflow: visible;
+  overflow: hidden;
   min-height: 0;
+  padding: 22px;
 }
 
 .project-side-price {
   font-size: 42px;
   font-weight: 700;
   margin: 18px 0;
+  line-height: 1.05;
 }
 
 .stacked-actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .full-btn {
   width: 100%;
+  max-width: 100%;
   text-align: center;
   justify-content: center;
+  padding: 14px 16px;
 }
 
 .tab-bar {
@@ -489,6 +507,9 @@ h1 {
   border-radius: 12px;
   padding: 10px 14px;
   cursor: pointer;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .tab-btn.active {
@@ -499,30 +520,41 @@ h1 {
 .subsection-title {
   margin: 0 0 14px;
   font-size: 28px;
+  line-height: 1.15;
 }
 
 .detail-title {
-  margin: 10px 0 8px;
+  margin: 10px 0 10px;
   font-size: 38px;
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .detail-meta {
   color: var(--muted);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .detail-description {
   color: var(--muted);
   line-height: 1.8;
   font-size: 15px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .back-link {
   display: inline-block;
   margin-top: 18px;
+  padding-top: 4px;
   text-decoration: none;
   color: var(--text);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .video-wrap {
