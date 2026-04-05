@@ -138,7 +138,6 @@ h1 {
 }
 
 .hero-actions,
-.project-actions,
 .detail-actions {
   display: flex;
   flex-wrap: wrap;
@@ -452,6 +451,11 @@ h1 {
   top: 24px;
 }
 
+.project-side-column .detail-panel {
+  overflow: visible;
+  min-height: 0;
+}
+
 .project-side-price {
   font-size: 42px;
   font-weight: 700;
@@ -706,20 +710,6 @@ body.glow-medium {
 
 body.glow-high {
   --shadow: 0 0 80px rgba(37,99,235,0.22);
-}
-
-body.density-compact .project-content,
-body.density-compact .hero {
-  padding: 14px;
-}
-
-body.density-compact .project-main-column .detail-panel,
-body.density-compact .project-side-column .detail-panel {
-  padding: 20px;
-}
-
-body.density-compact .project-desc {
-  min-height: auto;
 }
 
 body.image-contain .project-thumb,
