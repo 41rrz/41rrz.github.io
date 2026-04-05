@@ -163,6 +163,9 @@ h1 {
   padding: 12px 16px;
   border-radius: 16px;
   font-size: 14px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .btn:hover,
@@ -330,6 +333,9 @@ h1 {
   padding: 10px 12px;
   border-radius: 12px;
   font-size: 13px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .empty-state {
@@ -401,23 +407,18 @@ h1 {
   min-width: 0;
 }
 
-.project-detail-card,
-.detail-panel,
-.media-card {
-  min-width: 0;
-}
-
-.project-side-price,
-.subsection-title,
-.btn,
-.small-btn {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
 .media-card {
   overflow: hidden;
   padding: 0;
+}
+
+.detail-panel {
+  padding: 22px;
+  min-width: 0;
+}
+
+.detail-panel > * {
+  max-width: 100%;
 }
 
 .detail-hero-image {
@@ -468,21 +469,21 @@ h1 {
 .project-side-column .detail-panel {
   overflow: hidden;
   min-height: 0;
-  padding: 22px;
 }
 
 .project-side-price {
   font-size: 42px;
   font-weight: 700;
   margin: 18px 0;
-  line-height: 1.05;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .stacked-actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .full-btn {
@@ -508,8 +509,6 @@ h1 {
   padding: 10px 14px;
   cursor: pointer;
   max-width: 100%;
-  overflow-wrap: anywhere;
-  word-break: break-word;
 }
 
 .tab-btn.active {
@@ -520,7 +519,8 @@ h1 {
 .subsection-title {
   margin: 0 0 14px;
   font-size: 28px;
-  line-height: 1.15;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .detail-title {
