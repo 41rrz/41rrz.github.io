@@ -251,12 +251,8 @@ h1 {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 24px;
-  box-shadow: 0 0 30px rgba(59,130,246,0.06);
-}
-
-.project-card,
-.media-card {
   overflow: hidden;
+  box-shadow: 0 0 30px rgba(59,130,246,0.06);
 }
 
 .project-card {
@@ -453,11 +449,6 @@ h1 {
 .sticky-panel {
   position: sticky;
   top: 24px;
-}
-
-.project-side-column .detail-panel {
-  overflow: visible;
-  min-height: 0;
 }
 
 .project-side-price {
