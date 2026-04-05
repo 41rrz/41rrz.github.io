@@ -251,8 +251,12 @@ h1 {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 24px;
-  overflow: hidden;
   box-shadow: 0 0 30px rgba(59,130,246,0.06);
+}
+
+.project-card,
+.media-card {
+  overflow: hidden;
 }
 
 .project-card {
