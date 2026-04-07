@@ -783,3 +783,72 @@ body.reduced-motion *::after {
     padding: 24px;
   }
 }
+/* ===== SETTINGS GEAR BUTTON ===== */
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+  transform: translateY(-1px);
+}
+
+/* base icon */
+.gear-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--text);
+  opacity: 0.9;
+
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.3s ease;
+}
+
+/* hover spin */
+.icon-btn:hover .gear-icon {
+  transform: rotate(90deg);
+}
+
+/* snap to open position */
+.settings-open .icon-btn .gear-icon {
+  transform: rotate(180deg);
+}
+
+/* continuous spin when open */
+.settings-open .gear-icon {
+  animation: gear-spin 3.5s linear infinite;
+}
+
+/* glow pulse */
+.settings-open .icon-btn {
+  animation: gear-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes gear-spin {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(540deg);
+  }
+}
+
+@keyframes gear-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(0, 140, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(0, 140, 255, 0.35);
+  }
+}
